@@ -53,7 +53,7 @@ export class Modules {
             Object.keys(state).forEach((key) => {
                 assert(!hasOwn(this._namespaceStates, `${namespace}${SEP}${key}`), `the ${key} of the state object in the module named ${namespace} has been duplicate declaration.`);
                 this._namespaceStates[`${namespace}${SEP}${key}`] = state[key];
-            })
+            });
         });
 
         console.log('this._initNamespaceStates', this._namespaceStates);
