@@ -13,7 +13,7 @@ export function install (Vue) {
 
     _Vue = Vue;
 
-    Vue.mixins({
+    Vue.mixin({
         beforeCreate () {
             console.log('[revuekjs]: beforeCreate');
             const options = this.$options;
