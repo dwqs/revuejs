@@ -1,11 +1,10 @@
 import install from './install';
 
-export { default as mergeActions } from './merge-actions';
-export { default as mergeProps } from './merge-props';
+export { mergeActions, mergeProps } from './helpers';
 export { Modules } from './modules';
 
-const revuejs = {
+const Revuejs = {
     install
 };
 
-export default revuejs;
+export default Revuejs;
