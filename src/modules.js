@@ -11,7 +11,8 @@ export class Modules {
         console.log('Store Modules', modules);
 
         _root = this;
-        this._modules = modules;  
+        _root._vm = new _Vue();
+        this._modules = modules; 
         this._modulesNamespaces = [];
         this._modulesNamespaceMap = Object.create(null);
         this._namespaceStates = Object.create(null);
@@ -20,11 +21,31 @@ export class Modules {
         this._initNamespacesModules();
         this._initNamespaceStates();
         this._initNamespaceActions();
-        this._init();
+        this._init(_root);
     }
 
-    _init () {
+    _init (_root) {
+        _root.getters = {};
+        const computed = {};
 
+        this._modulesNamespaces.forEach((namespace) => {
+            const module = this._modulesNamespaceMap[namespace];
+            const { state } = module;
+            Object.keys(state).forEach((key) => {
+                _root.getters[key] = function wrappedGetter () {
+                    return state[key];
+                };
+            });
+            // Object.keys(state).forEach((key) => {
+            //     Object.defineProperty(_root.getters, key, {
+            //         enumerable: true,
+            //         configurable: true,
+            //         get: () => state[key],
+            //         set: (val) => state[key] = val
+            //     })
+            // })
+        });
+        console.log('init getter', _root.getters);
     }
 
     _initNamespacesModules () {
@@ -77,7 +98,15 @@ export class Modules {
                             assert(false, `_initNamespaceActions: ${e.message}`);
                         });
                     } else {
-                        module.state = Object.assign({}, res);
+                        // this.getters[res[key]] = res[]
+                        let batchs = [];
+                        Object.keys(res).forEach((key) => {
+                            // this.getters[key] = res[key];
+                            module.state[key] = res[key];
+                            batchs.push(key);
+                        });
+                        this._changeModuleState(batchs);
+                        // module.state = Object.assign({}, res);
                         console.log('11111111 new module state', module.state);
                     }
                     return res;
@@ -86,5 +115,13 @@ export class Modules {
         });
 
         console.log('this._namespaceActions', this._namespaceActions);
+    }
+
+    _changeModuleState (batchs) {
+        console.log('_changeModuleState', batchs);
+        console.log('computedssss', this.getters);
+        batchs.forEach((key) => {
+            this.getters[key]();
+        });
     }
 }
