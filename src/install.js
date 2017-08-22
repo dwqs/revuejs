@@ -2,7 +2,7 @@ import { assert } from './utils';
 
 export let _Vue;
 
-export function install (Vue) {
+export default function install (Vue) {
     const version = Number(Vue.version.split('.')[0]);
     assert(version >= 2, `Only supports Vuejs 2`);
 
