@@ -56,9 +56,10 @@ export const mergeProps = (props) => {
     });
 
     normalizeMap(props).forEach(({ key, val }) => {
-        const k = key.split(SEP)[1];
+        const k = key.indexOf(SEP) > -1 ? key.split(SEP)[1] : key;
+        const v = val.split(SEP)[1];
         res[k] = function mappedProps () {
-            return _root.getters[k]();
+            return _root.getters[v]();
         };
         // res[k] = _root.getters[k];
     });
