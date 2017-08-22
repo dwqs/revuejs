@@ -58,8 +58,9 @@ export class Modules {
             assert(typeof namespace === 'string', `the namespace of ${key} module must be a string.`);
             assert(/^[a-z]+$/.test(namespace), `the namespace of ${key} module must be defined used lower-case.`);
 
-            this._modulesNamespaceMap[namespace] = this._modules[key];
+            this._modulesNamespaceMap[namespace] = module;
             this._modulesNamespaces.push(namespace);
+            _Vue.set(this._modulesNamespaceMap[namespace], namespace, module.state);
         });
 
         console.log('this._initNamespaces', this._modulesNamespaceMap, this._modulesNamespaces);
