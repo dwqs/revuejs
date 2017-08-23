@@ -39,7 +39,7 @@ export default {
             await Promise.resolve(2);
             if(err) {
                return {
-                   msg: '请求出错了'
+                   msg: 'request error'
                }
             }
             return {
