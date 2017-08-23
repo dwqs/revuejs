@@ -52,6 +52,8 @@
     "rollup": "^0.45.2",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-cleanup": "^1.0.1",
+    "rollup-plugin-commonjs": "^8.2.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "vue": "^2.4.2",
     "vue-loader": "^13.0.0",
     "vue-router": "^2.7.0",
