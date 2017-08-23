@@ -119,7 +119,7 @@ app.$mount('#app');
 ```
 
 ## Docs
-[View the docs here](https://github.com/dwqs/revuejs/wiki/Introduction-%E4%BB%8B%E7%BB%8D).
+[View the docs here](https://github.com/dwqs/revuejs/wiki).
 
 ## Thanks
 
