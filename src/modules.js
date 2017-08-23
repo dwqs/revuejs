@@ -8,12 +8,12 @@ export class Modules {
         assert(_Vue, `must call Vue.use(revuejs) before creating a modules instance.`);
         assert(this instanceof Modules, `Modules must be called with the new operator.`);
         assert(isObject(modules), `modules must be a plain object`);
-        console.log('Store Modules', modules);
 
         _root = this;
-        _root._vm = new _Vue();
-        this._modules = modules; 
+        this._modules = modules;
         this._modulesNamespaces = [];
+
+        this._rootState = Object.create(null);
         this._modulesNamespaceMap = Object.create(null);
         this._namespaceStates = Object.create(null);
         this._namespaceActions = Object.create(null);
@@ -31,21 +31,22 @@ export class Modules {
         this._modulesNamespaces.forEach((namespace) => {
             const module = this._modulesNamespaceMap[namespace];
             const { state } = module;
+            this._rootState[namespace] = state;
             Object.keys(state).forEach((key) => {
                 _root.getters[key] = function wrappedGetter () {
                     return state[key];
                 };
             });
-            // Object.keys(state).forEach((key) => {
-            //     Object.defineProperty(_root.getters, key, {
-            //         enumerable: true,
-            //         configurable: true,
-            //         get: () => state[key],
-            //         set: (val) => state[key] = val
-            //     })
-            // })
         });
-        console.log('init getter', _root.getters);
+
+        // use a Vue instance to store the state tree
+        // and initialize the store vm, which is responsible for the reactivity
+        _root._vm = new _Vue({
+            data: {
+                $$state: this._rootState
+            },
+            computed
+        });
     }
 
     _initNamespacesModules () {
@@ -60,10 +61,8 @@ export class Modules {
 
             this._modulesNamespaceMap[namespace] = module;
             this._modulesNamespaces.push(namespace);
-            _Vue.set(this._modulesNamespaceMap[namespace], namespace, module.state);
+            // _Vue.set(this._modulesNamespaceMap[namespace], namespace, module.state)
         });
-
-        console.log('this._initNamespaces', this._modulesNamespaceMap, this._modulesNamespaces);
     }
 
     _initNamespaceStates () {
@@ -77,8 +76,6 @@ export class Modules {
                 this._namespaceStates[`${namespace}${SEP}${key}`] = state[key];
             });
         });
-
-        console.log('this._initNamespaceStates', this._namespaceStates);
     }
 
     _initNamespaceActions () {
@@ -94,33 +91,25 @@ export class Modules {
                     let res = actions[key].call(this, state, payload);
                     if (isPromise(res)) {
                         res.then((data) => {
-                            console.log('async success', data);
+                            this._changeModuleState(module, data);
                         }).catch((e) => {
-                            assert(false, `_initNamespaceActions: ${e.message}`);
+                            assert(false, `async error in _initNamespaceActions: ${e.message}`);
                         });
                     } else {
-                        // this.getters[res[key]] = res[]
-                        let batchs = [];
-                        Object.keys(res).forEach((key) => {
-                            // this.getters[key] = res[key];
-                            module.state[key] = res[key];
-                            batchs.push(key);
-                        });
-                        this._changeModuleState(batchs);
-                        // module.state = Object.assign({}, res);
-                        console.log('11111111 new module state', module.state);
+                        this._changeModuleState(module, res);
                     }
                     return res;
                 };
             });
         });
-
-        console.log('this._namespaceActions', this._namespaceActions);
     }
 
-    _changeModuleState (batchs) {
-        console.log('_changeModuleState', batchs);
-        console.log('computedssss', this.getters);
+    _changeModuleState (module, res) {
+        let batchs = [];
+        Object.keys(res).forEach((key) => {
+            module.state[key] = res[key];
+            batchs.push(key);
+        });
         batchs.forEach((key) => {
             this.getters[key]();
         });
