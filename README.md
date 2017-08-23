@@ -121,6 +121,14 @@ app.$mount('#app');
 ## Docs
 [View the docs here](https://github.com/dwqs/revuejs/wiki).
 
+## Examples
+Running the examples:
+
+```
+npm install
+npm run dev # serve examples at localhost:8000
+```
+
 ## Thanks
 
 Thanks to [vuex](https://github.com/vuejs/vuex) for the head start.
