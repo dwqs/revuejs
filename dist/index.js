@@ -143,7 +143,6 @@ var Modules = function () {
                             res.then(function (data) {
                                 _this5._changeModuleState(module, data);
                             }).catch(function (e) {
-                                assert(false, 'async error in _initNamespaceActions: ' + e.message);
                             });
                         } else {
                             this._changeModuleState(module, res);
