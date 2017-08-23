@@ -159,7 +159,7 @@ var Modules = function () {
             var _this6 = this;
             var batchs = [];
             Object.keys(res).forEach(function (key) {
-                if (module.state[key]) {
+                if (typeof module.state[key] !== 'undefined') {
                     module.state[key] = res[key];
                     batchs.push(key);
                 }
