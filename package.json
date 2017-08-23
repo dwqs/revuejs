@@ -1,6 +1,6 @@
 {
   "name": "revuejs",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "A tiny, light and handy state management for vuejs 2",
   "author": "pomysky@gmail.com",
   "main": "dist/index.js",
@@ -27,6 +27,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "async-await-error-handling": "^0.5.2",
     "ava": "^0.22.0",
     "axios": "^0.16.2",
     "babel-core": "^6.25.0",
