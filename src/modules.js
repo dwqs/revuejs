@@ -93,7 +93,8 @@ export class Modules {
                         res.then((data) => {
                             this._changeModuleState(module, data);
                         }).catch((e) => {
-                            assert(false, `async error in _initNamespaceActions: ${e.message}`);
+                            // do nothing
+                            // assert(false, `async error in _initNamespaceActions: ${e.message}`);
                         });
                     } else {
                         this._changeModuleState(module, res);
