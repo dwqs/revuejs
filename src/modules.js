@@ -107,8 +107,10 @@ export class Modules {
     _changeModuleState (module, res) {
         let batchs = [];
         Object.keys(res).forEach((key) => {
-            module.state[key] = res[key];
-            batchs.push(key);
+            if (module.state[key]) {
+                module.state[key] = res[key];
+                batchs.push(key);
+            }
         });
         batchs.forEach((key) => {
             this.getters[key]();
