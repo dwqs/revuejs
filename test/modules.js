@@ -204,8 +204,6 @@ test.serial('composing actions with async/await', async t => {
 
     await vm.asyncAddTodo();
 
-    console.log('rrrrrr', vm.total, vm.list);
-
     t.is(vm.total, 1);
     t.deepEqual(vm.list, todo.state.list);
     t.deepEqual(vm.list, ['testAsync']);
