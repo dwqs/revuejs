@@ -88,7 +88,7 @@ export class Modules {
             Object.keys(actions).forEach((key) => {
                 assert(!hasOwn(this._namespaceActions, `${namespace}${SEP}${key}`), `the ${key} action of the module named ${namespace} has been duplicate declaration.`);
                 this._namespaceActions[`${namespace}${SEP}${key}`] = function wrappedActionHandler (payload) {
-                    let res = actions[key].call(this, state, payload);
+                    let res = actions[key].call(module, state, payload);
                     if (isPromise(res)) {
                         res.then((data) => {
                             this._changeModuleState(module, data);
