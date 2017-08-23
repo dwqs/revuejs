@@ -107,7 +107,7 @@ export class Modules {
     _changeModuleState (module, res) {
         let batchs = [];
         Object.keys(res).forEach((key) => {
-            if (module.state[key]) {
+            if (typeof module.state[key] !== 'undefined') {
                 module.state[key] = res[key];
                 batchs.push(key);
             }
