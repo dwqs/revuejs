@@ -15,7 +15,6 @@ export default function install (Vue) {
 
     Vue.mixin({
         beforeCreate () {
-            console.log('[revuekjs]: beforeCreate');
             const options = this.$options;
             if (options.modules) {
                 this.$modules = options.modules;
