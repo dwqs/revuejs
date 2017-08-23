@@ -1,13 +1,24 @@
 {
   "name": "revuejs",
   "version": "0.0.1",
-  "description": "A new Vue.js project",
+  "description": "A tiny, light and handy state management for vuejs 2",
   "author": "pomysky@gmail.com",
+  "main": "dist/index.js",
   "license": "MIT",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dwqs/revuejs"
+  },
+  "keywords": [
+    "vue",
+    "vuejs2",
+    "modules",
+    "state-management"
+  ],
   "scripts": {
     "prepush": "npm run ilint -q",
-    "build": "npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
+    "build": "npx rollup -c",
     "ilint": "npx eslint src/**/*.js",
     "fix": "npx eslint --fix src/**/*.js"
   },
@@ -24,7 +35,14 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "husky": "^0.14.2"
+    "husky": "^0.14.2",
+    "rollup": "^0.45.2",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-cleanup": "^1.0.1"
+  },
+  "homepage": "https://github.com/dwqs/revuejs",
+  "bugs": {
+    "url": "https://github.com/dwqs/revuejs/issues"
   },
   "engines": {
     "node": ">= 6.0.0",
