@@ -17,6 +17,7 @@
     "state-management"
   ],
   "scripts": {
+    "test": "./node_modules/.bin/ava ./test/**/*.js",
     "dev": "node ./examples/dev-server.js",
     "prepush": "npm run ilint -q",
     "prepublishOnly": "npm run build",
@@ -26,6 +27,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "ava": "^0.22.0",
     "axios": "^0.16.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
