@@ -138,7 +138,7 @@ var Modules = function () {
                     assert(!hasOwn(_this4._namespaceActions, '' + namespace + SEP + key), 'the ' + key + ' action of the module named ' + namespace + ' has been duplicate declaration.');
                     _this4._namespaceActions['' + namespace + SEP + key] = function wrappedActionHandler(payload) {
                         var _this5 = this;
-                        var res = actions[key].call(this, state, payload);
+                        var res = actions[key].call(module, state, payload);
                         if (isPromise(res)) {
                             res.then(function (data) {
                                 _this5._changeModuleState(module, data);
