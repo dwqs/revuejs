@@ -125,5 +125,5 @@ app.$mount('#app');
 
 Thanks to [vuex](https://github.com/vuejs/vuex) for the head start.
 
-### LICENSE
+## LICENSE
 MIT
