@@ -1,0 +1,13 @@
+{
+    "name": "revuejs",
+    "main": "dist/index.js",
+    "description": "A tiny, light and handy state management for vuejs 2.",
+    "authors": ["pomysky@gmail.com"],
+    "license": "MIT",
+    "ignore": [
+      "*",
+      "!dist",
+      "!LICENSE",
+      "!README.md"
+    ]
+  }
