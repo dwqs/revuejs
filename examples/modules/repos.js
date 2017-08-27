@@ -5,7 +5,8 @@ export default {
     namespace: 'repos',
     state: {
         all: 0,
-        error: ''
+        error: '',
+        title: 'Repos'
     },
     actions: {
         async getYourRepos (state, payload) {

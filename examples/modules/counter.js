@@ -1,7 +1,8 @@
 export default {
     namespace: 'counter',
     state: {
-        count: 0
+        count: 0,
+        title: 'Counter'
     },
     actions: {
         increase (state, payload) {

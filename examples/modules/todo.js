@@ -2,7 +2,8 @@ export default {
     namespace: 'todo',
     state: {
         list: [],
-        total: 0
+        total: 0,
+        title: 'ToDo'
     },
     actions: {
         addTodo (state, payload) {
