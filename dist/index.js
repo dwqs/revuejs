@@ -993,7 +993,7 @@ var Modules = function () {
                 var state = module.state;
                 _this._rootState[namespace] = state;
                 _Object$keys(state).forEach(function (key) {
-                    _root.getters[key] = function wrappedGetter() {
+                    _root.getters['' + namespace + SEP + key] = function wrappedGetter() {
                         return state[key];
                     };
                 });
@@ -1068,7 +1068,7 @@ var Modules = function () {
             _Object$keys(res).forEach(function (key) {
                 if (typeof module.state[key] !== 'undefined') {
                     module.state[key] = res[key];
-                    batchs.push(key);
+                    batchs.push('' + module.namespace + SEP + key);
                 }
             });
             batchs.forEach(function (key) {
@@ -1128,9 +1128,8 @@ var mergeProps = function mergeProps(props) {
         var key = _ref2.key,
             val = _ref2.val;
         var k = key.indexOf(SEP) > -1 ? key.split(SEP)[1] : key;
-        var v = val.split(SEP)[1];
         res[k] = function mappedProps() {
-            return _root.getters[v]();
+            return _root.getters[val]();
         };
     });
     return res;
