@@ -47,7 +47,8 @@ test.beforeEach(t => {
         namespace: 'todo',
         state: {
             total: 0,
-            list: []
+            list: [],
+            title: 'test todo'
         },
         actions: {
             addTodo (state, payload) {
@@ -86,6 +87,21 @@ test.beforeEach(t => {
         counter,
         todo
     });
+});
+
+test('same prop in module', (t) => {
+    t.plan(2);
+
+    const vm = new Vue({
+        modules,
+        computed: mergeProps({
+            'countTitle': 'counter.title',
+            'todoTitle': 'todo.title'
+        })
+    });
+
+    t.is(vm.countTitle, 'test count');
+    t.is(vm.todoTitle, 'test todo');
 });
 
 test('sync actions', (t) => {

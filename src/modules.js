@@ -110,7 +110,7 @@ export class Modules {
         Object.keys(res).forEach((key) => {
             if (typeof module.state[key] !== 'undefined') {
                 module.state[key] = res[key];
-                batchs.push(key);
+                batchs.push(`${module.namespace}${SEP}${key}`);
             }
         });
         batchs.forEach((key) => {
