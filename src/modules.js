@@ -33,7 +33,7 @@ export class Modules {
             const { state } = module;
             this._rootState[namespace] = state;
             Object.keys(state).forEach((key) => {
-                _root.getters[key] = function wrappedGetter () {
+                _root.getters[`${namespace}${SEP}${key}`] = function wrappedGetter () {
                     return state[key];
                 };
             });
