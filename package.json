@@ -1,6 +1,6 @@
 {
   "name": "revuejs",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "A tiny, light and handy state management for vuejs 2",
   "author": "pomysky@gmail.com",
   "main": "dist/index.js",
