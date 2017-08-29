@@ -873,7 +873,7 @@ function install(Vue) {
     });
 }
 if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(revuejs);
+    window.Vue.use(Revuejs);
 }
 
 var isEnum$1 = _objectPie.f;
@@ -1135,11 +1135,11 @@ var mergeProps = function mergeProps(props) {
     return res;
 };
 
-var Revuejs = {
+var Revuejs$1 = {
     install: install
 };
 
-exports['default'] = Revuejs;
+exports['default'] = Revuejs$1;
 exports.mergeActions = mergeActions;
 exports.mergeProps = mergeProps;
 exports.Modules = Modules;
