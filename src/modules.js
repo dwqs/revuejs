@@ -97,6 +97,8 @@ export class Modules {
                             // assert(false, `async error in _initNamespaceActions: ${e.message}`);
                         });
                     } else {
+                        // wrap a promise
+                        res = Promise.resolve(res);
                         this._changeModuleState(module, res);
                     }
                     return res;
