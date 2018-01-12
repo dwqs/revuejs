@@ -1,4 +1,4 @@
-[![build pass](https://api.travis-ci.org/dwqs/revuejs.svg?branch=master)](https://travis-ci.org/dwqs/vue-mobx) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com) ![npm-version](https://img.shields.io/npm/v/revuejs.svg) ![license](https://img.shields.io/npm/l/revuejs.svg) ![bower-license](https://img.shields.io/bower/l/revuejs.svg)
+[![build pass](https://api.travis-ci.org/dwqs/revuejs.svg?branch=master)](https://travis-ci.org/dwqs/revuejs) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com) ![npm-version](https://img.shields.io/npm/v/revuejs.svg) ![license](https://img.shields.io/npm/l/revuejs.svg) ![bower-license](https://img.shields.io/bower/l/revuejs.svg)
 
 # revuejs
 :rabbit2: A tiny, light and handy state management for vuejs 2, writing less verbose code.
