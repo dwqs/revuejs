@@ -57,7 +57,7 @@ test('mergeProps(Object)', (t) => {
 });
 
 test('mergeActions(Array)', (t) => {
-    t.plan(7);
+    t.plan(5);
     const vm = new Vue({
         modules,
         computed: mergeProps(['counter.count']),
@@ -70,18 +70,16 @@ test('mergeActions(Array)', (t) => {
 
     vm.increase();
 
-    t.is(vm.count, 1);
     t.is(vm.count, counter.state.count);
 
     vm.decrease();
     vm.decrease();
 
-    t.is(vm.count, -1);
     t.is(vm.count, counter.state.count);
 });
 
 test('mergeActions(Object)', (t) => {
-    t.plan(7);
+    t.plan(5);
     const vm = new Vue({
         modules,
         computed: mergeProps(['counter.count']),
@@ -97,12 +95,10 @@ test('mergeActions(Object)', (t) => {
 
     vm.inc();
 
-    t.is(vm.count, 1);
     t.is(vm.count, counter.state.count);
 
     vm.dec();
     vm.dec();
 
-    t.is(vm.count, -1);
     t.is(vm.count, counter.state.count);
 });

@@ -105,7 +105,7 @@ test('same prop in module', (t) => {
 });
 
 test('sync actions', (t) => {
-    t.plan(5);
+    t.plan(3);
     
     const vm = new Vue({
         modules,
@@ -117,18 +117,16 @@ test('sync actions', (t) => {
 
     vm.increase(5);
     
-    t.is(vm.count, 5);
     t.is(vm.count, counter.state.count);
 
     vm.decrease(2);
     vm.decrease(6);
 
-    t.is(vm.count, -3);
     t.is(vm.count, counter.state.count);
 });
 
 test('action with object style', (t) => {
-    t.plan(11);
+    t.plan(9);
     
     const vm = new Vue({
         modules,
@@ -145,7 +143,6 @@ test('action with object style', (t) => {
         item: 'item2'
     });
     
-    t.is(vm.total, 2);
     t.is(vm.total, todo.state.total);
     t.deepEqual(vm.list, ['item1', 'item2']);
     t.deepEqual(vm.list, todo.state.list);
@@ -155,7 +152,6 @@ test('action with object style', (t) => {
         index: 0
     });
 
-    t.is(vm.total, 1);
     t.is(vm.total, todo.state.total);
     t.deepEqual(vm.list, ['item2']);
     t.deepEqual(vm.list, todo.state.list);
@@ -183,7 +179,7 @@ test.serial('action return resolved promise', async t => {
 });
 
 test.serial('action return rejected promise', async t => {
-    t.plan(7);
+    t.plan(5);
     
     const vm = new Vue({
         modules,
@@ -194,15 +190,12 @@ test.serial('action return rejected promise', async t => {
     t.is(vm.count, 0);
     
     vm.increase(50);
-
-    t.is(vm.count, 50);
     
     let res = await t.throws(vm.rejectedPromise(20));
     const [err, data] = await awaitTo(vm.rejectedPromise(20));
     
     t.is(res.message, 'rejected error');
     t.is(err.message, 'rejected error');
-    t.is(vm.count, 50);
     t.is(data, null);
 });
 
