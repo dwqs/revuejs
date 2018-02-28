@@ -4,7 +4,7 @@ export let _Vue;
 
 export default function install (Vue) {
     const version = Number(Vue.version.split('.')[0]);
-    assert(version >= 2, `Only supports Vuejs 2`);
+    assert(version >= 2, `Only supports Vuejs 2 or higher`);
 
     if (install.installed) {
         return;
@@ -24,7 +24,3 @@ export default function install (Vue) {
         }
     });
 };
-
-if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(Revuejs);
-}
